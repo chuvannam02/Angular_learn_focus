@@ -1,0 +1,73 @@
+<h3>HEROES</h3>
+<p>Get your heroes here</p>
+<button (click)="changeStateOfIsSpecial()">
+  Chuyển trạng thái từ special sang common
+</button>
+<div [ngClass]="isSpecial ? 'special' : 'common'">
+  Danh sách các anh hùng của bạn ở đây
+</div>
+<p>
+  sử dụng ngClass - là một attribute directive: adds and removes a set of CSS
+  classes
+</p>
+<br />
+<p>
+  Sử dụng ngStyle - một attribute directive: adds and removes a set of HTML
+  styles
+</p>
+<div [ngStyle]="{ 'font-style': isSpecial ? 'italic' : 'normal' }">
+  Danh sách các anh hùng của bạn ở đây
+</div>
+<br />
+<p>
+  Sử dụng ngModel - một attribute directive: adds two way binding to an HTML
+  form element (display and update data properties of a model): chú ý phải
+  import 2 module là: FormsModule và CommonModule
+</p>
+<input [(ngModel)]="twoWayBinding" placeholder="Vui lòng nhập chuỗi đầu vào" />
+<p>{{ twoWayBinding }}</p>
+<p>
+  Nhưng cú pháp [(ngModel)] là viết tắt của việc kết hợp property binding và
+  event binding
+</p>
+<ol>
+  <li>Dùng property binding để thiết lập thuộc tính (property)</li>
+  <li>Dùng event binding để phản hồi sự thay đổi</li>
+</ol>
+<p>Ví dụ như sau</p>
+<!-- <input [ngModel]="currentItem.name" (ngModelChange)="setUppercaseName($event)" id="example-uppercase"> -->
+<br />
+<h3>
+  Structural Directive (Change the DOM layout by adding and removing DOM
+  elements.)
+</h3>
+<p>
+  đảm nhận trách nhiệm về bố cục HTML. Chúng định hình hoặc thay đổi cấu trúc
+  DOM, thường bằng cách thêm, loại bỏ và manipulate các phần tử chủ (host
+  elements) mà chúng được gắn kết vào.
+</p>
+<br />
+<h3>Passing data from parent component to child component</h3>
+<!-- Truyền dữ liệu từ component cha tới con qua currentItem -->
+<app-hero-detail [item]="currentItem"></app-hero-detail>
+<hr />
+<!-- Truyền dữ liệu từ component con sang component cha -->
+<app-hero-detail (newItemEvent)="addItem($event)"></app-hero-detail>
+<ul>
+  <li *ngFor="let item of items">{{ item }}</li>
+</ul>
+<hr />
+<input #phone placeholder="phone number" />
+<button type="button" (click)="callPhone(phone.value)">Call</button>
+<hr />
+<h3>Template Variable và ViewChild/ViewChildren</h3>
+<button (click)="toggleComp.doSomeThing()">Toggle</button>
+<br />
+<app-hero-detail #toggleComp></app-hero-detail>
+<hr />
+<button (click)="toggleInside()">Toggle inside class</button>
+<hr />
+<app-hero-detail>
+    <p question>Is content projection cool?</p>
+    <p>Let's learn about content projection!</p>
+</app-hero-detail>
